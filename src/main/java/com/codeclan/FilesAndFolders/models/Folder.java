@@ -1,6 +1,7 @@
 package com.codeclan.FilesAndFolders.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,9 +23,9 @@ public class Folder {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Folder(String title, List<File> files, User user) {
+    public Folder(String title, User user) {
         this.title = title;
-        this.files = files;
+        this.files = new ArrayList<>();
         this.user = user;
     }
 
@@ -61,6 +62,10 @@ public class Folder {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void addFile(File file) {
+        this.files.add(file);
     }
 
 }
