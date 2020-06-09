@@ -19,6 +19,7 @@ public class Folder {
     @OneToMany(mappedBy = "folder", fetch = FetchType.LAZY)
     private List<File> files;
 
+    @JsonIgnoreProperties("folders")
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -62,10 +63,6 @@ public class Folder {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public void addFile(File file) {
-        this.files.add(file);
     }
 
 }
