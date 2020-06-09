@@ -3,6 +3,7 @@ package com.codeclan.FilesAndFolders.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,9 +21,9 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Folder> folders;
 
-    public User(String name, List<Folder> folders) {
+    public User(String name) {
         this.name = name;
-        this.folders = folders;
+        this.folders = new ArrayList<>();
     }
 
     public User() {
@@ -50,6 +51,10 @@ public class User {
 
     public void setFolders(List<Folder> folders) {
         this.folders = folders;
+    }
+
+    public void addFolder(Folder folder) {
+        this.folders.add(folder);
     }
 
 }
